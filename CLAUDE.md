@@ -208,3 +208,10 @@ Wait for consent; never auto-create ADRs. Group related decisions (stacks, authe
 
 ## Code Standards
 See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
+
+## Active Technologies
+- Node.js 18+ / TypeScript 5.x + Docusaurus 3.x, React 18, MDX, localStorage API (001-docusaurus-textbook-setup)
+- Browser localStorage (client-side only, no database) (001-docusaurus-textbook-setup)
+
+## Recent Changes
+- 001-docusaurus-textbook-setup: Added Node.js 18+ / TypeScript 5.x + Docusaurus 3.x, React 18, MDX, localStorage API
