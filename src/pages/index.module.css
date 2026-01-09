@@ -142,6 +142,53 @@
   padding-top: 0;
 }
 
+/* Chapter completion styles */
+.chapterCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chapterCardHeader h3 {
+  flex: 1;
+  margin: 0;
+}
+
+.completedBadge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: var(--ifm-color-success);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.completedLabel {
+  font-size: 0.8125rem;
+  color: var(--ifm-color-success);
+  font-weight: 600;
+}
+
+.chapterCardRead {
+  border-color: var(--ifm-color-success);
+  background-color: var(--ifm-background-color);
+}
+
+[data-theme='dark'] .chapterCardRead {
+  background-color: rgba(46, 133, 85, 0.05);
+}
+
+.progressContainer {
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
 /* ===========================
    Call to Action Section
    =========================== */

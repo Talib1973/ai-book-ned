@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import { CHAPTERS } from '../types';
+import ProgressBar from '../components/ProgressBar';
+import {
+  getUserProgress,
+  isChapterRead,
+  getProgressPercentage,
+} from '../utils/localStorage';
 
 import styles from './index.module.css';
 
@@ -26,11 +32,14 @@ function HomepageHeader() {
   );
 }
 
-function ChapterCard({ chapter }: { chapter: typeof CHAPTERS[0] }) {
+function ChapterCard({ chapter, isRead }: { chapter: typeof CHAPTERS[0]; isRead: boolean }) {
   return (
-    <div className={clsx('card', styles.chapterCard)}>
+    <div className={clsx('card', styles.chapterCard, isRead && styles.chapterCardRead)}>
       <div className="card__header">
-        <h3>{chapter.title}</h3>
+        <div className={styles.chapterCardHeader}>
+          <h3>{chapter.title}</h3>
+          {isRead && <span className={styles.completedBadge}>✓</span>}
+        </div>
       </div>
       <div className="card__body">
         <p>{chapter.description}</p>
@@ -38,13 +47,16 @@ function ChapterCard({ chapter }: { chapter: typeof CHAPTERS[0] }) {
           <span className={styles.readingTime}>
             📖 {chapter.readingTime} min read
           </span>
+          {isRead && (
+            <span className={styles.completedLabel}>Completed</span>
+          )}
         </div>
       </div>
       <div className="card__footer">
         <Link
           className="button button--primary button--block"
           to={`/docs/${chapter.slug}`}>
-          Read Chapter
+          {isRead ? 'Read Again' : 'Read Chapter'}
         </Link>
       </div>
     </div>
@@ -103,9 +115,45 @@ function FeaturesSection() {
 }
 
 function ChaptersSection() {
+  const [progressPercentage, setProgressPercentage] = useState(0);
+  const [readChapters, setReadChapters] = useState<Set<string>>(new Set());
+
   // Filter out intro (chapter 0)
   const mainChapters = CHAPTERS.filter((ch) => ch.chapterNumber > 0);
   const totalReadingTime = mainChapters.reduce((sum, ch) => sum + ch.readingTime, 0);
+
+  useEffect(() => {
+    // Load progress on mount
+    const loadProgress = () => {
+      const percentage = getProgressPercentage();
+      setProgressPercentage(percentage);
+
+      const read = new Set<string>();
+      mainChapters.forEach((chapter) => {
+        if (isChapterRead(chapter.id)) {
+          read.add(chapter.id);
+        }
+      });
+      setReadChapters(read);
+    };
+
+    loadProgress();
+
+    // Listen for storage events (cross-tab sync)
+    const handleStorageChange = () => {
+      loadProgress();
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    // Also listen for custom progress update event
+    window.addEventListener('progressUpdated', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('progressUpdated', handleStorageChange);
+    };
+  }, [mainChapters]);
 
   return (
     <section className={styles.chaptersSection}>
@@ -116,10 +164,20 @@ function ChaptersSection() {
             Total Reading Time: ~{totalReadingTime} minutes
           </p>
         </div>
+
+        {progressPercentage > 0 && (
+          <div className={styles.progressContainer}>
+            <ProgressBar percentage={progressPercentage} />
+          </div>
+        )}
+
         <div className={clsx('row', styles.chapterGrid)}>
           {mainChapters.map((chapter, idx) => (
             <div key={idx} className="col col--4 margin-bottom--lg">
-              <ChapterCard chapter={chapter} />
+              <ChapterCard
+                chapter={chapter}
+                isRead={readChapters.has(chapter.id)}
+              />
             </div>
           ))}
         </div>
