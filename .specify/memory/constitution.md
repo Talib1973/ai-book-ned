@@ -1,55 +1,167 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+- Version change: Initial → 1.0.0
+- New constitution created for AI-Native Physical AI Textbook
+- Principles defined: 6 core principles established
+- Added sections: Technical Stack, Quality Gates, Governance
+- Templates requiring updates:
+  ✅ plan-template.md (Constitution Check section validated)
+  ✅ spec-template.md (Success criteria alignment validated)
+  ✅ tasks-template.md (Task categorization alignment validated)
+- Follow-up TODOs: None - all placeholders filled
+-->
+
+# AI-Native Physical AI Textbook Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. AI-Native First
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+Every feature MUST leverage AI capabilities as a foundational component, not an add-on.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+**Non-negotiable rules:**
+- RAG chatbot MUST answer ONLY from book content (grounded responses)
+- Personalization MUST adapt content based on user background
+- Auto-generation MUST produce summaries, quizzes, and learning boosters per chapter
+- No feature ships without demonstrating AI value
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+**Rationale:** This is an AI-powered education platform, not a static book. AI integration defines the product's core value proposition and differentiates it from traditional textbooks.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### II. Speed & Simplicity
 
-### [PRINCIPLE_6_NAME]
+The platform MUST be fast, simple, and frictionless.
 
+**Non-negotiable rules:**
+- Entire book MUST be readable in under 45 minutes total
+- Chapters MUST be short, clean, and modern (6-8 chapters maximum)
+- Page load times MUST be optimized for fast rendering
+- UI MUST be minimal with clear navigation
+- No unnecessary complexity or feature bloat
 
-[PRINCIPLE__DESCRIPTION]
+**Rationale:** Users expect instant access and quick learning. Cognitive overload and slow performance kill engagement in educational platforms.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### III. Mobile-First User Experience
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+Clean, beautiful, mobile-friendly design is mandatory.
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+**Non-negotiable rules:**
+- UI MUST be fully responsive and mobile-optimized
+- Navigation MUST be intuitive (minimal user confusion)
+- Visual design MUST be clean and modern
+- Accessibility MUST be considered in all UI decisions
+- User flows MUST be tested on mobile devices
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+**Rationale:** Modern learners access content primarily on mobile. Poor mobile experience means lost users.
+
+### IV. Content Quality & Accuracy
+
+All content and AI responses MUST be accurate and high-quality.
+
+**Non-negotiable rules:**
+- Chatbot MUST use chunking + MiniLM embeddings for high accuracy
+- RAG responses MUST cite sources from the book
+- Translations MUST be accurate (Urdu translation validated)
+- Quizzes and summaries MUST align with chapter content
+- Low accuracy is unacceptable - test and validate
+
+**Rationale:** Educational content demands accuracy. Misleading AI responses or poor translations damage trust and learning outcomes.
+
+### V. Personalization & Accessibility
+
+Content MUST adapt to users and be accessible in multiple languages.
+
+**Non-negotiable rules:**
+- User authentication MUST be implemented via Better-Auth
+- Content MUST personalize based on user background
+- One-click Urdu translation MUST be available for every chapter
+- User preferences MUST persist across sessions
+- Personalization MUST be meaningful, not cosmetic
+
+**Rationale:** Different learners have different backgrounds and language preferences. Generic content reduces effectiveness.
+
+### VI. Observability & Reliability
+
+The system MUST be observable, reliable, and maintainable.
+
+**Non-negotiable rules:**
+- Health checks MUST be implemented for all services
+- Logging MUST capture critical operations and errors
+- Token usage MUST be monitored and optimized (implement in phases)
+- Error handling MUST provide clear user feedback
+- Backend errors MUST be logged and tracked
+
+**Rationale:** Production systems fail silently without observability. Token costs can spiral without monitoring. Debugging requires logs.
+
+## Technical Stack
+
+**Frontend:** Docusaurus-based interactive textbook (React)
+**Backend:** API services for RAG, personalization, translation
+**Authentication:** Better-Auth
+**AI/ML:** RAG with chunking, MiniLM embeddings
+**Database:** User preferences, authentication data
+**Deployment:** Stable URLs (frontend + backend)
+
+All technology choices MUST align with the goal of fast, simple, beautiful delivery.
+
+## Quality Gates
+
+Before any feature is considered complete, it MUST pass these gates:
+
+**Functional Completeness:**
+- ✅ All chapters visible and readable
+- ✅ Chatbot fully functional with grounded answers
+- ✅ Auth + personalization + translation working
+- ✅ Quizzes + summaries generated per chapter
+
+**Performance & UX:**
+- ✅ Clean UI, fast loading, mobile-friendly
+- ✅ Book readable in < 45 minutes total
+- ✅ Chatbot accuracy validated (chunking + embeddings)
+
+**Production Readiness:**
+- ✅ Fully deployed URLs live and stable
+- ✅ Health checks + logging operational
+- ✅ Token usage monitored
+
+**Demo & Validation:**
+- ✅ 90-second demo recorded
+- ✅ User validation on mobile device
+
+## Risk Mitigation
+
+**Known Risks:**
+
+1. **RAG low accuracy** → Mitigation: Use chunking + MiniLM embeddings, validate responses
+2. **Token usage high** → Mitigation: Implement in phases, monitor usage, set limits
+3. **User confusion** → Mitigation: Keep UI minimal and clean, conduct user testing
+4. **Backend errors** → Mitigation: Add health checks + logging, error handling
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+### Amendment Procedure
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+Constitution changes MUST follow this process:
+1. Propose change via `/sp.constitution` with rationale
+2. Document impact on existing features and templates
+3. Update version number following semantic versioning
+4. Propagate changes to dependent templates
+5. Document in Sync Impact Report
+
+### Versioning Policy
+
+- **MAJOR** (X.0.0): Backward incompatible governance/principle removals or redefinitions
+- **MINOR** (0.X.0): New principle/section added or materially expanded guidance
+- **PATCH** (0.0.X): Clarifications, wording, typo fixes, non-semantic refinements
+
+### Compliance Review
+
+- All feature specs MUST reference relevant constitution principles
+- All implementation plans MUST include Constitution Check section
+- All PRs MUST verify compliance with constitution principles
+- Complexity MUST be justified against constitution guidelines
+
+### Runtime Guidance
+
+For day-to-day development guidance, consult `CLAUDE.md` and agent-specific command files in `.specify/templates/commands/`.
+
+**Version**: 1.0.0 | **Ratified**: 2026-01-09 | **Last Amended**: 2026-01-09
