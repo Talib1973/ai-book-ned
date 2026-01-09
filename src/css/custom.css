@@ -1,0 +1,299 @@
+/**
+ * AI-Native Textbook - Custom Styles
+ * Mobile-first responsive design (320px to 4K)
+ * WCAG 2.1 AA compliant color contrast
+ */
+
+/* ===========================
+   CSS Custom Properties
+   =========================== */
+
+:root {
+  /* Primary Colors - Light Mode */
+  --ifm-color-primary: #2e8555;
+  --ifm-color-primary-dark: #29784c;
+  --ifm-color-primary-darker: #277148;
+  --ifm-color-primary-darkest: #205d3b;
+  --ifm-color-primary-light: #33925d;
+  --ifm-color-primary-lighter: #359962;
+  --ifm-color-primary-lightest: #3cad6e;
+
+  /* Typography */
+  --ifm-font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --ifm-font-family-monospace: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas,
+    'Courier New', monospace;
+
+  /* Base Font Sizes - Mobile First (320px) */
+  --ifm-font-size-base: 16px;
+  --ifm-h1-font-size: 1.75rem;
+  --ifm-h2-font-size: 1.5rem;
+  --ifm-h3-font-size: 1.25rem;
+  --ifm-h4-font-size: 1.125rem;
+  --ifm-line-height-base: 1.6;
+
+  /* Spacing */
+  --ifm-spacing-horizontal: 1rem;
+  --ifm-spacing-vertical: 1rem;
+  --ifm-container-width: 100%;
+  --ifm-container-width-xl: 1280px;
+
+  /* Colors */
+  --ifm-background-color: #ffffff;
+  --ifm-background-surface-color: #f8f9fa;
+  --ifm-code-font-size: 90%;
+}
+
+/* Dark Mode Colors */
+[data-theme='dark'] {
+  --ifm-color-primary: #25c2a0;
+  --ifm-color-primary-dark: #21af90;
+  --ifm-color-primary-darker: #1fa588;
+  --ifm-color-primary-darkest: #1a8870;
+  --ifm-color-primary-light: #29d5b0;
+  --ifm-color-primary-lighter: #32d8b4;
+  --ifm-color-primary-lightest: #4fddbf;
+
+  --ifm-background-color: #1b1b1d;
+  --ifm-background-surface-color: #242526;
+}
+
+/* ===========================
+   Responsive Typography
+   =========================== */
+
+/* Tablet (768px+) */
+@media screen and (min-width: 768px) {
+  :root {
+    --ifm-font-size-base: 17px;
+    --ifm-h1-font-size: 2rem;
+    --ifm-h2-font-size: 1.75rem;
+    --ifm-h3-font-size: 1.375rem;
+    --ifm-spacing-horizontal: 1.5rem;
+    --ifm-container-width: 720px;
+  }
+}
+
+/* Desktop (996px+) */
+@media screen and (min-width: 996px) {
+  :root {
+    --ifm-font-size-base: 18px;
+    --ifm-h1-font-size: 2.25rem;
+    --ifm-h2-font-size: 1.875rem;
+    --ifm-h3-font-size: 1.5rem;
+    --ifm-spacing-horizontal: 2rem;
+    --ifm-container-width: 960px;
+  }
+}
+
+/* Large Desktop (1280px+) */
+@media screen and (min-width: 1280px) {
+  :root {
+    --ifm-container-width: 1140px;
+  }
+}
+
+/* 4K (2560px+) */
+@media screen and (min-width: 2560px) {
+  :root {
+    --ifm-font-size-base: 20px;
+    --ifm-h1-font-size: 2.5rem;
+    --ifm-container-width: 1920px;
+  }
+}
+
+/* ===========================
+   Layout & Navigation
+   =========================== */
+
+.navbar {
+  padding: 0.75rem 1rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.navbar__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+@media screen and (min-width: 768px) {
+  .navbar__title {
+    font-size: 1.25rem;
+  }
+}
+
+/* Sidebar */
+.menu {
+  padding: 1rem 0;
+}
+
+.menu__link {
+  font-size: 0.9375rem;
+  padding: 0.5rem 0.75rem;
+}
+
+@media screen and (max-width: 996px) {
+  .menu__link {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* ===========================
+   Content Area
+   =========================== */
+
+.markdown {
+  --ifm-leading: 1.6;
+}
+
+.markdown > h1 {
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.markdown > h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.markdown > h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.markdown p {
+  margin-bottom: 1rem;
+}
+
+.markdown img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Code blocks */
+.markdown pre {
+  border-radius: 6px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 768px) {
+  .markdown pre {
+    font-size: 0.8125rem;
+  }
+}
+
+/* ===========================
+   Accessibility
+   =========================== */
+
+/* Focus states - WCAG 2.1 AA */
+a:focus,
+button:focus,
+.menu__link:focus {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+/* Skip to content link */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  padding: 1rem;
+  background-color: var(--ifm-color-primary);
+  color: white;
+  text-decoration: none;
+}
+
+.skip-to-content:focus {
+  left: 0;
+  top: 0;
+}
+
+/* Touch targets - minimum 44x44px */
+@media (pointer: coarse) {
+  .navbar__item,
+  .menu__link,
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* ===========================
+   Performance Optimizations
+   =========================== */
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===========================
+   Custom Components
+   =========================== */
+
+/* Chapter progress indicator */
+.chapter-progress {
+  margin: 2rem 0;
+  padding: 1rem;
+  background: var(--ifm-background-surface-color);
+  border-radius: 8px;
+  border-left: 4px solid var(--ifm-color-primary);
+}
+
+.chapter-progress__title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--ifm-color-primary);
+}
+
+.chapter-progress__text {
+  font-size: 0.9375rem;
+  color: var(--ifm-font-color-base);
+}
+
+/* Reading time estimate */
+.reading-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-600);
+  margin-bottom: 1rem;
+}
+
+/* Callout boxes */
+.callout {
+  padding: 1rem;
+  margin: 1.5rem 0;
+  border-radius: 6px;
+  border-left: 4px solid;
+}
+
+.callout--info {
+  background: rgba(46, 133, 85, 0.1);
+  border-color: var(--ifm-color-primary);
+}
+
+.callout--warning {
+  background: rgba(255, 152, 0, 0.1);
+  border-color: #ff9800;
+}
+
+.callout--tip {
+  background: rgba(33, 150, 243, 0.1);
+  border-color: #2196f3;
+}
