@@ -1,0 +1,301 @@
+/**
+ * Homepage Styles
+ * Mobile-first responsive design
+ */
+
+/* ===========================
+   Hero Banner
+   =========================== */
+
+.heroBanner {
+  padding: 4rem 1rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (min-width: 768px) {
+  .heroBanner {
+    padding: 6rem 2rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+/* ===========================
+   Features Section
+   =========================== */
+
+.features {
+  padding: 4rem 1rem;
+  background: var(--ifm-background-surface-color);
+}
+
+@media screen and (min-width: 768px) {
+  .features {
+    padding: 6rem 2rem;
+  }
+}
+
+.feature {
+  margin-bottom: 2rem;
+}
+
+.feature h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: var(--ifm-color-primary);
+}
+
+.feature p {
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--ifm-font-color-base);
+}
+
+/* ===========================
+   Chapters Section
+   =========================== */
+
+.chaptersSection {
+  padding: 4rem 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .chaptersSection {
+    padding: 6rem 2rem;
+  }
+}
+
+.totalTime {
+  font-size: 1.125rem;
+  color: var(--ifm-color-emphasis-700);
+  font-weight: 500;
+}
+
+.chapterGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.chapterCard {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.chapterCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] .chapterCard:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.chapterCard .card__header h3 {
+  font-size: 1.125rem;
+  margin: 0;
+  color: var(--ifm-heading-color);
+}
+
+.chapterCard .card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.chapterCard .card__body p {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--ifm-color-emphasis-700);
+  margin: 0;
+}
+
+.chapterMeta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.readingTime {
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-600);
+  font-weight: 500;
+}
+
+.chapterCard .card__footer {
+  padding-top: 0;
+}
+
+/* Chapter completion styles */
+.chapterCardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chapterCardHeader h3 {
+  flex: 1;
+  margin: 0;
+}
+
+.completedBadge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background-color: var(--ifm-color-success);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.completedLabel {
+  font-size: 0.8125rem;
+  color: var(--ifm-color-success);
+  font-weight: 600;
+}
+
+.chapterCardRead {
+  border-color: var(--ifm-color-success);
+  background-color: var(--ifm-background-color);
+}
+
+[data-theme='dark'] .chapterCardRead {
+  background-color: rgba(46, 133, 85, 0.05);
+}
+
+.progressContainer {
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+/* ===========================
+   Call to Action Section
+   =========================== */
+
+.ctaSection {
+  padding: 4rem 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .ctaSection {
+    padding: 6rem 2rem;
+  }
+}
+
+.ctaSection h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.ctaSection p {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+}
+
+/* ===========================
+   Responsive Adjustments
+   =========================== */
+
+/* Mobile (< 768px) */
+@media screen and (max-width: 767px) {
+  .chapterGrid .col {
+    --ifm-col-width: 100%;
+  }
+
+  .feature {
+    margin-bottom: 2rem;
+  }
+
+  .heroBanner h1 {
+    font-size: 1.75rem;
+  }
+
+  .heroBanner .hero__subtitle {
+    font-size: 1rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .buttons .button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Tablet (768px - 995px) */
+@media screen and (min-width: 768px) and (max-width: 995px) {
+  .chapterGrid .col {
+    --ifm-col-width: 50%;
+  }
+}
+
+/* Desktop (996px+) */
+@media screen and (min-width: 996px) {
+  .chapterGrid .col {
+    --ifm-col-width: 33.333333%;
+  }
+}
+
+/* ===========================
+   Accessibility
+   =========================== */
+
+/* Ensure sufficient contrast */
+.chapterCard .card__header,
+.chapterCard .card__body,
+.feature {
+  color: var(--ifm-font-color-base);
+}
+
+/* Focus states */
+.chapterCard:focus-within {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .chapterCard {
+    transition: none;
+  }
+
+  .chapterCard:hover {
+    transform: none;
+  }
+}
+
+/* ===========================
+   Dark Mode Adjustments
+   =========================== */
+
+[data-theme='dark'] .chapterCard {
+  border-color: var(--ifm-color-emphasis-300);
+}
+
+[data-theme='dark'] .chapterMeta {
+  border-color: var(--ifm-color-emphasis-300);
+}
